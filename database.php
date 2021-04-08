@@ -1,4 +1,11 @@
 <?php
+if(empty($_POST)) {
+    echo "you came directly.. not allowed";
+    die();
+}
+?>
+
+<?php
 $servername = "localhost";
 $username = "root";
 $password = "";
