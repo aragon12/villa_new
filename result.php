@@ -39,14 +39,25 @@ $score = calcScore($data, $tot);
     <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style type="text/css">
+    body{
+        background: #FF9800;
+        color: white;
+    }
     td {
         padding: 15px;
         width: 50%;
     }
     table {
         width: 100%;
-        border: 1px solid black;
+        box-shadow: 0 6px 10px 0 rgba(0,0,0,0.14), 0 1px 18px 0 rgba(0,0,0,0.12), 0 3px 5px -1px rgba(0,0,0,0.20);
         font-size: 20px;
+    }
+    .qa_cont {
+        border: none;
+        margin: 10px 0px 0px 0px;
+        font-size: 20px;
+        padding: 10px;
+        box-shadow: 0 3px 4px 0 rgba(0,0,0,0.14), 0 3px 3px -2px rgba(0,0,0,0.12), 0 1px 8px 0 rgba(0,0,0,0.20);
     }
     </style>
         <title>Quiz Result</title>

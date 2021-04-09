@@ -47,9 +47,11 @@ function gen_q_ans($conn, $tab_n) {
         while($row = mysqli_fetch_assoc($result))
         {
             $ques_s = "Q-".$r." ".$row['ques']."<br>";
-            $ans_s = "Ans: ".$row["op_".$row['ans']]."<br><br>";
+            $ans_s = "Ans: ".$row["op_".$row['ans']]."";
+            echo "<div class=\"qa_cont\">";
             echo $ques_s;
             echo $ans_s;
+            echo "</div>";
             $r++;
         }
         return 1;
