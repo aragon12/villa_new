@@ -72,7 +72,11 @@ function gen_quiz($conn, $tab_n) {
         while($row = mysqli_fetch_assoc($result))
         {
             $ques_s = "Q-".$r.": ".$row['ques']."<br>";
+            echo "<div class=\"ques_cont\">";
+            echo "<div style=\"font-weight:bold\">";
             echo $ques_s;
+            echo "</div>";
+            echo "<div class=\"opt\">";
             $x = 1;
             while($x < 5) {
                 $opt_s = $x.") ".$row['op_'.$x]." <input type=\"radio\" name=\"q".$r."\" value=\"".$x."\"><br>";
@@ -80,6 +84,8 @@ function gen_quiz($conn, $tab_n) {
                 $x++;
             }
             $r++;
+            echo "</div>";
+            echo "</div>";
             echo "<br>";
         }
         return 1;
