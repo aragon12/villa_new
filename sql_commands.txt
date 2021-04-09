@@ -1,17 +1,32 @@
 CREATE TABLE if not exists easy_q_ans (
     id int NOT NULL AUTO_INCREMENT,
-    ans varchar(33),
+    ques varchar(255),
+    op_1 varchar(255),
+    op_2 varchar(255),
+    op_3 varchar(255),
+    op_4 varchar(255),
+    ans int NOT NULL,
     PRIMARY KEY (id)
 );
 
 CREATE TABLE if not exists medium_q_ans (
     id int NOT NULL AUTO_INCREMENT,
-    ans varchar(33),
+    ques varchar(255),
+    op_1 varchar(255),
+    op_2 varchar(255),
+    op_3 varchar(255),
+    op_4 varchar(255),
+    ans int NOT NULL,
     PRIMARY KEY (id)
 );
 
 CREATE TABLE if not exists hard_q_ans (
     id int NOT NULL AUTO_INCREMENT,
-    ans varchar(33),
+    ques varchar(255),
+    op_1 varchar(255),
+    op_2 varchar(255),
+    op_3 varchar(255),
+    op_4 varchar(255),
+    ans int NOT NULL,
     PRIMARY KEY (id)
 );

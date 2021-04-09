@@ -4,6 +4,8 @@ if(empty($_POST)) {
     die();
 }
 
+require('./database.php');
+
 $quiz = $_POST['qtype'];
 ?>
 
@@ -33,7 +35,7 @@ $quiz = $_POST['qtype'];
             <script type="text/javascript">countDown(30,"cdtimer");</script> second left.<br><br>
         <form name="easy_quiz" action="./result.php" method="POST">
     <?php
-    require('./quiz/'.$quiz.'_q.php');
+    gen_quiz($conn, $quiz."_q_ans");
     ?>
          <input type="hidden" name="qtype" value="<?php echo $quiz?>">
         <input type="submit">
