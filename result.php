@@ -3,13 +3,12 @@ if(empty($_POST)) {
     echo "You are coming directly.. not allowed";
     die();
 }
-?>
 
-<?php
+$quiz = $_POST['qtype'];
 require('./database.php'); 
-?>
 
-<?php
+//matches two options
+//returns true if they are equal
 function isAnsRight($ans, $rans){
     if($_POST[$ans] == $rans) {
         return true;
@@ -18,6 +17,7 @@ function isAnsRight($ans, $rans){
 }
 $perf = array('Poor', 'Poor', 'Bad', 'Good', 'Strong', 'Strong');
 
+// calculate the user's score
 function calcScore($ans_l) {
     $sc = 0;
     for($i = 0; $i < 5; $i++) {
@@ -28,10 +28,10 @@ function calcScore($ans_l) {
     }
     return $sc;
 }
-?>
 
-<?php
+//fetch answer key and store in any array
 $data = fetch_ans($conn, $_POST['qtype']."_q_ans");
+
 $tot = 5;
 $score = calcScore($data); 
 ?>
@@ -44,6 +44,8 @@ $score = calcScore($data);
         <H1 align="center">Result:</H1>
          Right Answers: <?php echo $score ; ?><br>
          Wrong Answers: <?php echo ($tot - $score); ?><br>
-         Performance: <?php echo $perf[$score]; ?>
+         Performance: <?php echo $perf[$score]; ?><br>
+         <H2>Correct Answers:</H2>
+         <?php gen_q_ans($conn, $quiz."_q_ans"); ?>
     </body>
 </html>

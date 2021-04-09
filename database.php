@@ -3,9 +3,7 @@ if(empty($_POST)) {
     echo "you came directly.. not allowed";
     die();
 }
-?>
 
-<?php
 $servername = "localhost";
 $uname = "root";
 $pwd = "";
@@ -38,6 +36,29 @@ function fetch_ans($conn, $tab_n) {
         
     }
     
+}
+
+//Generates questions and their answers list
+function gen_q_ans($conn, $tab_n) {
+    $sql = "SELECT * from ".$tab_n;
+    $result = mysqli_query($conn, $sql);
+    $r = 1;
+    if (mysqli_num_rows($result) > 0) {
+        while($row = mysqli_fetch_assoc($result))
+        {
+            $ques_s = "Q-".$r." ".$row['ques']."<br>";
+            $ans_s = "Ans: ".$row["op_".$row['ans']]."<br><br>";
+            echo $ques_s;
+            echo $ans_s;
+            $r++;
+        }
+        return 1;
+        
+    } else {
+        echo "No results";
+        return -1;
+        
+    }
 }
 
 //fetches questions and options for quiz
