@@ -23,7 +23,7 @@
             
         </form>
         </div>
-        Instructions:<br>
+        <h2 style="margin: 3px 0px 10px 0px;">Instructions:</h2>
         • You will get only 30 seconds to attempt all questions.<br>
         • After 30 seconds, your response will be submitted automatically.<br>
         • Do not refresh the browser window. you will loose your quiz.
