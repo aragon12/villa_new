@@ -18,9 +18,9 @@ function isAnsRight($ans, $rans){
 $perf = array('Poor', 'Poor', 'Bad', 'Good', 'Strong', 'Strong');
 
 // calculate the user's score
-function calcScore($ans_l) {
+function calcScore($ans_l, $q_c) {
     $sc = 0;
-    for($i = 0; $i < 5; $i++) {
+    for($i = 0; $i < $q_c; $i++) {
         $kk = "q".($i+1);
         if(isAnsRight($kk, $ans_l[$i])) {
             $sc++;
@@ -32,8 +32,8 @@ function calcScore($ans_l) {
 //fetch answer key and store in any array
 $data = fetch_ans($conn, $_POST['qtype']."_q_ans");
 
-$tot = 5;
-$score = calcScore($data); 
+$tot = count($data);
+$score = calcScore($data, $tot);
 ?>
 <html>
     <head>
@@ -74,5 +74,8 @@ $score = calcScore($data);
         </table>
          <H2>Correct Answers:</H2>
          <?php gen_q_ans($conn, $quiz."_q_ans"); ?>
+         <div style="margin: 5px 0px 0px 0px;text-align: center;font-size: 25px">
+             <a href="/">Home</a>
+         </div>
     </body>
 </html>
