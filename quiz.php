@@ -12,16 +12,19 @@ $quiz = $_POST['qtype'];
 <html>
     <head>
     <script type="text/javascript">
-    function countDown(secs, elem) {
-        var disp = document.getElementById(elem);
+    //Displays a countdown timer
+    //Submits the form if timer is reached
+    function cd_timer(secs, disp_t) {
+        var disp = document.getElementById(disp_t);
         disp.innerHTML = secs+"s";
-        if(secs < 1) {
-        document.forms["easy_quiz"].submit();
-        } else {
-            secs--;
-            setTimeout('countDown('+secs+',"'+elem+'")',1000);
+        if(!secs) {
+        document.forms["quiz"].submit();
         }
+        secs--;
+        setTimeout('cd_timer('+secs+', "'+disp_t+'")',1000);
     }
+    
+    //To prevent resubmission of form
     if ( window.history.replaceState ) {
     window.history.replaceState( null, null, window.location.href );
     }
@@ -66,8 +69,8 @@ $quiz = $_POST['qtype'];
             Time left: <span style="color: #ef5350" id="cdtimer"></span>
         </div>
         <br>
-            <script type="text/javascript">countDown(30,"cdtimer");</script>
-        <form name="easy_quiz" action="./result.php" method="POST">
+            <script type="text/javascript">cd_timer(30,"cdtimer");</script>
+        <form name="quiz" action="./result.php" method="POST">
     <?php
     gen_quiz($conn, $quiz."_q_ans");
     ?>

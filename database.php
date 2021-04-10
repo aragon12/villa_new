@@ -18,49 +18,49 @@ if (!$conn) {
 }
 
 // fetches answers of quiz
+// stores answers in an Array
+// returns that array
 function fetch_ans($conn, $tab_n) {
     $sql = "SELECT ans from ".$tab_n;
     $result = mysqli_query($conn, $sql);
     $ans = array();
     
-    if (mysqli_num_rows($result) > 0) {
-        while($row = mysqli_fetch_assoc($result))
-        {
-            $ans[] = $row["ans"];
-        }
-        return $ans;
-        
-    } else {
+    // return if no record found
+    if(!mysqli_num_rows($result)) {
         echo "No results";
         return -1;
-        
     }
     
+    while($row = mysqli_fetch_assoc($result))
+    {
+        $ans[] = $row["ans"];
+    }
+    return $ans;
 }
 
-//Generates questions and their answers list
+//Fetches Questions and their Answers from DB
+//Generates Q & A list
 function gen_q_ans($conn, $tab_n) {
     $sql = "SELECT * from ".$tab_n;
     $result = mysqli_query($conn, $sql);
     $r = 1;
-    if (mysqli_num_rows($result) > 0) {
-        while($row = mysqli_fetch_assoc($result))
-        {
-            $ques_s = "Q-".$r." ".$row['ques']."<br>";
-            $ans_s = "Ans: ".$row["op_".$row['ans']]."";
-            echo "<div class=\"qa_cont\">";
-            echo $ques_s;
-            echo $ans_s;
-            echo "</div>";
-            $r++;
-        }
-        return 1;
-        
-    } else {
+    
+    //return if no record found
+    if(!mysqli_num_rows($result)) {
         echo "No results";
         return -1;
-        
     }
+
+    while($row = mysqli_fetch_assoc($result)) {
+        $ques_s = "Q-".$r." ".$row['ques']."<br>";
+        $ans_s = "Ans: ".$row["op_".$row['ans']]."";
+        echo "<div class=\"qa_cont\">";
+        echo $ques_s;
+        echo $ans_s;
+        echo "</div>";
+        $r++;
+    }
+    return 1;
 }
 
 //fetches questions and options for quiz
@@ -70,33 +70,29 @@ function gen_quiz($conn, $tab_n) {
     $sql = "SELECT ques, op_1, op_2, op_3, op_4 from ".$tab_n;
     $result = mysqli_query($conn, $sql);
     $r = 1;
-    if (mysqli_num_rows($result) > 0) {
-        while($row = mysqli_fetch_assoc($result))
-        {
-            $ques_s = "Q-".$r.": ".$row['ques']."<br>";
-            echo "<div class=\"ques_cont\">";
-            echo "<div style=\"font-weight:bold\">";
-            echo $ques_s;
-            echo "</div>";
-            echo "<div class=\"opt\">";
-            $x = 1;
-            while($x < 5) {
-                $opt_s = $x.") ".$row['op_'.$x]." <input type=\"radio\" name=\"q".$r."\" value=\"".$x."\"><br>";
-                echo $opt_s;
-                $x++;
-            }
-            $r++;
-            echo "</div>";
-            echo "</div>";
-            echo "<br>";
-        }
-        return 1;
-        
-    } else {
+    
+    //return if no record found
+    if(!mysqli_num_rows($result)) {
         echo "No results";
         return -1;
-        
-    } 
+    }
+
+    while($row = mysqli_fetch_assoc($result)) {
+        $ques_s = "Q-".$r.": ".$row['ques']."<br>";
+        echo "<div class=\"ques_cont\">";
+        echo "<div style=\"font-weight:bold\">";
+        echo $ques_s;
+        echo "</div><div class=\"opt\">";
+        $x = 1;
+        while($x < 5) {
+            $opt_s = $x.") ".$row['op_'.$x]." <input type=\"radio\" name=\"q".$r."\" value=\"".$x."\"><br>";
+            echo $opt_s;
+            $x++;
+        }
+        $r++;
+        echo "</div></div><br>";
+    }
+    return 1;
 }
 
 ?>
