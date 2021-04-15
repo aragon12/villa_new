@@ -3,7 +3,7 @@
 //and generate Q/A list
 function gen_qa_list(data) {
     var r=1;
-    data.forEach( function (row) {
+    data.forEach( (row) => {
         var ques_s = "Q-"+r+": "+row.ques+"<br>"
         var ans_s = "Ans: "+row['op_'+row.ans]
 %>
