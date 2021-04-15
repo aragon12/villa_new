@@ -18,7 +18,7 @@ app.use(urlencodedParser);
 
 //render homepage
 app.get("/", (req, res) => {
- res.render('index');
+ res.render('home');
 });
 
 //redirect to home
@@ -28,19 +28,16 @@ app.get("/quiz", (req, res) => {
 });
 
 function qz(req, res) {
-    var resp = req.body.qtype;
-    console.log(resp);
-    const sql = "select ques, op_1, op_2, op_3, op_4 from "+resp+"_q_ans";
- con.query(sql, function(err, data) {
-     res.render('quiz', {qtype:resp, data: data} );
+    const sql = "select ques, op_1, op_2, op_3, op_4 from "+req.body.qtype+"_q_ans";
+ con.query(sql, (err, data) => {
+     res.render('quiz', {qtype:req.body.qtype, data: data} );
  });
 }
 
 function resu(req, res) {
-    var resp = req.body.qtype;
-    const sql = "select * from "+resp+"_q_ans";
-    con.query(sql, function(err, data) {
-        res.render('result', {qtype:resp, data:data, user_data: req.body});
+    const sql = "select * from "+req.body.qtype+"_q_ans";
+    con.query(sql, (err, data) => {
+        res.render('result', {qtype:req.body.qtype, data:data, user_data:req.body});
     });
 }
 
