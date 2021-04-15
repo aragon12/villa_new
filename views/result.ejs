@@ -1,0 +1,99 @@
+<%
+//takes data as json object
+//and generate Q/A list
+function gen_qa_list(data) {
+    var r=1;
+    data.forEach( function (row) {
+        var ques_s = "Q-"+r+": "+row.ques+"<br>"
+        var ans_s = "Ans: "+row['op_'+row.ans]
+%>
+<%-
+        "<div class=\"qa_cont\">"
+        +ques_s+
+        ans_s+
+        "</div>"
+%>
+<%
+        r++;
+    })
+}
+%>
+
+<%
+//takes userdata and ans_key
+// calculate user's score and returns it
+function calc_sc(data, u_data) {
+    var r = 1
+    var sc = 0
+    while (r <= data.length) {
+        c_val = data[r-1]['ans']
+        u_val = u_data['q'+r]
+        if( (u_val != undefined) && (u_val == c_val)) {
+            sc++
+        }
+        r++;
+    }
+    return sc
+}
+
+var perf = ["Poor", "Poor", "Bad", "Good", "Strong", "Strong"]
+
+var sc = calc_sc(data, user_data)
+var tot = data.length
+%>
+
+<html>
+    <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style type="text/css">
+    body{
+        background: #FF9800;
+        color: white;
+    }
+    td {
+        padding: 15px;
+        width: 50%;
+    }
+    table {
+        width: 100%;
+        box-shadow: 0 6px 10px 0 rgba(0,0,0,0.14), 0 1px 18px 0 rgba(0,0,0,0.12), 0 3px 5px -1px rgba(0,0,0,0.20);
+        font-size: 20px;
+    }
+    .qa_cont {
+        border: none;
+        margin: 10px 0px 0px 0px;
+        font-size: 20px;
+        padding: 10px;
+        box-shadow: 0 3px 4px 0 rgba(0,0,0,0.14), 0 3px 3px -2px rgba(0,0,0,0.12), 0 1px 8px 0 rgba(0,0,0,0.20);
+    }
+    </style>
+        <title>Quiz Result</title>
+    </head>
+    <body>
+        <table>
+            <tr>
+                <td style="text-align: center; font-weight: bold;border-bottom: 1px solid black" colspan=2>Result
+            </tr>
+            <tr>
+                <td style="color: green">Right Answers:
+                <td><%= sc %><br>
+            </tr>
+                <td style="color: red">Wrong Answers:
+                <td><%= tot - sc %><br>
+            </tr>
+            <tr>
+                <td>Performance:
+                <td><%= perf[sc]  %><br>
+            </tr>
+            <tr>
+                <td>Difficulty:
+                <td><%=qtype%><br>
+            </tr>
+        </table>
+         <H2>Correct Answers:</H2>
+         <% gen_qa_list(data) %>
+         <div style="margin: 5px 0px 0px 0px;text-align: center;font-size: 25px">
+             <a href="/">Home</a>
+         </div>
+    </body>
+</html>
