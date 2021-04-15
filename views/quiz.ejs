@@ -1,13 +1,37 @@
-<?php
-if(empty($_POST)) {
-    echo "you came directly.. not allowed";
-    die();
+<%
+//takes quiz data as json object
+// and generate quiz content to render
+function gen_quiz(data) {
+    var r = 1
+    data.forEach(function (row) {
+        var ques_s = "Q-"+r+": "+row.ques+"<br>"
+%>
+<%-
+        "<div class=\"ques_cont\"><div style=\"font-weight:bold\">"
+        +ques_s+
+        "</div><div class=\"opt\">"
+%>
+<%
+        var x = 1;
+        while(x < 5) {
+            var opt_s = x+") "+row['op_'+x]+" <input type=\"radio\" name=\"q"+r+"\" value=\""+x+"\"><br>"
+%>
+<%- 
+            opt_s
+%>
+<% 
+            x++
+        }
+        r++
+%>
+<%-
+        "</div></div><br>"
+%>
+<%
+    })
 }
+%>
 
-require('./database.php');
-
-$quiz = $_POST['qtype'];
-?>
 
 <html>
     <head>
@@ -65,16 +89,14 @@ $quiz = $_POST['qtype'];
     <body>
         <div class="top_cont">
             GK Quiz<br>
-            Difficulty: <?php echo $quiz; ?><br>
+            Difficulty: <%=qtype%><br>
             Time left: <span style="color: #ef5350" id="cdtimer"></span>
         </div>
         <br>
             <script type="text/javascript">cd_timer(30,"cdtimer");</script>
-        <form name="quiz" action="./result.php" method="POST">
-    <?php
-    gen_quiz($conn, $quiz."_q_ans");
-    ?>
-         <input type="hidden" name="qtype" value="<?php echo $quiz?>">
+        <form name="quiz" action="/result" method="POST">
+        <% gen_quiz(data) %>
+         <input type="hidden" name="qtype" value="<%=qtype%>">
          <div style="margin: 0px 10px 10px 0px ;text-align:center; ">
               <input style="padding:10px; font-size:30px" class="btn" type="submit">
              </div>

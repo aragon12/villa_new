@@ -1,10 +1,7 @@
 leaving this file in case of any confusion.
 
-I am assuming you have already installed php and mysql servers.
+I am assuming you have already installed nodejs and mysql servers.
 
 Install instructions:
-• create database named "villa_project"
-• open file "sql_commands.txt" in notepad and copy all commands
-• open phpmyadmin, then go sql console and paste these commands. it will create required tables.
-• place the project files in root directory, or in a seperate folder
-• run the project (localhost)
+• npm install
+• npm start
