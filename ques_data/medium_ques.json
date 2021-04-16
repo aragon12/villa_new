@@ -1,0 +1,47 @@
+[
+    {
+        "id": 1,
+        "ques": "Ms-Word is an example of?",
+        "op_1": "An Operating System",
+        "op_2": "A processing device",
+        "op_3": "Application Software",
+        "op_4": "An input device",
+        "ans": 3
+    },
+    {
+        "id": 2,
+        "ques": "Hydrogen bomb is based on the principal of?",
+        "op_1": "Nuclear fission",
+        "op_2": "Nuclear fusion",
+        "op_3": "Nuclear Radioactivity",
+        "op_4": "Artificial Radioactivity",
+        "ans": 2
+    },
+    {
+        "id": 3,
+        "ques": "Any website's main page is its?",
+        "op_1": "HomePage",
+        "op_2": "Browser Page",
+        "op_3": "Bookmark",
+        "op_4": "Search Page",
+        "ans": 1
+    },
+    {
+        "id": 4,
+        "ques": "What's the minimum age for becoming a Prime Minister?",
+        "op_1": "18",
+        "op_2": "30",
+        "op_3": "25",
+        "op_4": "None of these",
+        "ans": 3
+    },
+    {
+        "id": 5,
+        "ques": "Which metal can be cut with a knife?",
+        "op_1": "Silver",
+        "op_2": "Zinc",
+        "op_3": "Aluminum",
+        "op_4": "Sodium",
+        "ans": 4
+    }
+]

@@ -1,16 +1,8 @@
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
-const urlencodedParser = bodyParser.urlencoded({ extended: false })
-const mysql = require('mysql');
-
-// connect to db
-var con = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "",
-  database: "villa_project"
-});
+const urlencodedParser = bodyParser.urlencoded({ extended: false });
+const fs = require('fs');
 
 app.set("view engine", "ejs");
 
@@ -28,17 +20,13 @@ app.get("/quiz", (req, res) => {
 });
 
 function qz(req, res) {
-    const sql = "select ques, op_1, op_2, op_3, op_4 from "+req.body.qtype+"_q_ans";
- con.query(sql, (err, data) => {
-     res.render('quiz', {qtype:req.body.qtype, data: data} );
- });
+    const q_data = JSON.parse(fs.readFileSync('./ques_data/'+req.body.qtype+'_ques.json', 'utf8'));
+    res.render('quiz', {qtype:req.body.qtype, data:q_data});
 }
 
 function resu(req, res) {
-    const sql = "select * from "+req.body.qtype+"_q_ans";
-    con.query(sql, (err, data) => {
-        res.render('result', {qtype:req.body.qtype, data:data, user_data:req.body});
-    });
+    const q_data = JSON.parse(fs.readFileSync('./ques_data/'+req.body.qtype+'_ques.json', 'utf8'));
+    res.render('result', {qtype:req.body.qtype, data:q_data, user_data:req.body});
 }
 
 //generate the quiz

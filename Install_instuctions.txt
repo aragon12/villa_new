@@ -1,6 +1,6 @@
 leaving this file in case of any confusion.
 
-I am assuming you have already installed nodejs and mysql servers.
+I am assuming you have already installed nodejs.
 
 Install instructions:
 • npm install

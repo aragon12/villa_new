@@ -1,0 +1,47 @@
+[
+    {
+        "id": 1,
+        "ques": "How many days are there in a week?",
+        "op_1": "5",
+        "op_2": "6",
+        "op_3": "7",
+        "op_4": "8",
+        "ans": 3
+    },
+    {
+        "id": 2,
+        "ques": "The Gateway of India is located in?",
+        "op_1": "Chennai",
+        "op_2": "Mumbai",
+        "op_3": "Kolkata",
+        "op_4": "New Delhi",
+        "ans": 2
+    },
+    {
+        "id": 3,
+        "ques": "The Largest river of India is?",
+        "op_1": "Ganga",
+        "op_2": "Yamuna",
+        "op_3": "Kaveri",
+        "op_4": "Brahmaputra",
+        "ans": 1
+    },
+    {
+        "id": 4,
+        "ques": "Planet nearest to the sun?",
+        "op_1": "Earth",
+        "op_2": "Mars",
+        "op_3": "Venus",
+        "op_4": "Mercury",
+        "ans": 4
+    },
+    {
+        "id": 5,
+        "ques": "How many spokes are there in Ashok Chakra?",
+        "op_1": "12",
+        "op_2": "24",
+        "op_3": "18",
+        "op_4": "20",
+        "ans": 2
+    }
+]
