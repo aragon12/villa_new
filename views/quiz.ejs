@@ -7,6 +7,7 @@ function gen_quiz(data) {
         var ques_s = "Q-"+r+": "+row.ques+"<br>"
 %>
 <%-
+        //generate question
         "<div class=\"ques_cont\"><div style=\"font-weight:bold\">"
         +ques_s+
         "</div><div class=\"opt\">"
@@ -16,7 +17,8 @@ function gen_quiz(data) {
         while(x < 5) {
             var opt_s = x+") "+row['op_'+x]+" <input type=\"radio\" name=\"q"+r+"\" value=\""+x+"\"><br>"
 %>
-<%- 
+<%-
+            //generate options
             opt_s
 %>
 <% 
@@ -70,17 +72,21 @@ function gen_quiz(data) {
         }
         .top_cont {
             text-align: center;
-            padding: 20px 0px 20px 0px;
+            padding: 20px 0px;
             font-size: 25px;
             box-shadow: 0 6px 10px 0 rgba(0,0,0,0.14), 0 1px 18px 0 rgba(0,0,0,0.12), 0 3px 5px -1px rgba(0,0,0,0.20);
         }
         .btn{
             background-color: #03A9F4;
-            font-size: 45px;
+            font-size: 30px;
             border:none;
             color: white;
+            padding: 10px;
             box-shadow: 0 3px 4px 0 rgba(0,0,0,0.14), 0 3px 3px -2px rgba(0,0,0,0.12), 0 1px 8px 0 rgba(0,0,0,0.20);
-
+        }
+        .sub_cont {
+            margin: 0px 10px 10px 0px;
+            text-align: center;
         }
     </style>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -93,13 +99,15 @@ function gen_quiz(data) {
             Time left: <span style="color: #ef5350" id="cdtimer"></span>
         </div>
         <br>
-            <script type="text/javascript">cd_timer(30,"cdtimer");</script>
+        <script type="text/javascript">cd_timer(30,"cdtimer");</script>
         <form name="quiz" action="/result" method="POST">
-        <% gen_quiz(data) %>
-         <input type="hidden" name="qtype" value="<%=qtype%>">
-         <div style="margin: 0px 10px 10px 0px ;text-align:center; ">
-              <input style="padding:10px; font-size:30px" class="btn" type="submit">
-             </div>
+            <% //generate ques data
+               gen_quiz(data)
+            %>
+            <input type="hidden" name="qtype" value="<%=qtype%>">
+            <div class="sub_cont">
+                <input class="btn" type="submit">
+            </div>
         </form>
     </body>
 </html>
